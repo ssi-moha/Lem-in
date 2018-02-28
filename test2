@@ -1,0 +1,19 @@
+#salut
+#salut
+#salut
+#salut
+21
+##start
+sin -8 -9
+aie 10 9
+##end
+2 6 5
+try 8 15
+mid 7 5
+ele 5 8
+sin-try
+sin-aie
+aie-mid
+mid-ele
+ele-2
+try-2

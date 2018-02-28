@@ -1,0 +1,15 @@
+10
+##start
+dep 5 8
+left 9 6
+right 7 4
+ap 8 5
+no 7 9
+##end
+fin 2 8
+dep-left
+dep-right
+dep-ap
+dep-no
+no-fin
+ap-fin
