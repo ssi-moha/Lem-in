@@ -6,7 +6,7 @@
 /*   By: ssi-moha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 18:43:59 by ssi-moha          #+#    #+#             */
-/*   Updated: 2018/02/16 18:18:30 by ssi-moha         ###   ########.fr       */
+/*   Updated: 2018/03/02 19:36:09 by ssi-moha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	free_rooms(t_room **room)
 {
-	t_room *tmp;
-
 	if (!*room)
 		return ;
 	while (*room)

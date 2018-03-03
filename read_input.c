@@ -6,60 +6,66 @@
 /*   By: ssi-moha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 13:02:01 by ssi-moha          #+#    #+#             */
-/*   Updated: 2018/02/26 18:44:05 by ssi-moha         ###   ########.fr       */
+/*   Updated: 2018/03/03 10:39:41 by ssi-moha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_room	*read_input(char *file_name, t_inf *inf)
+t_room	*init_func(t_inf *inf, char **prev)
 {
-	int		fd;
-	char *str;
-	char *prev;
-	int i;
-	t_room *room;
-
-	prev = ft_strdup("");
-	fd = open(file_name, O_RDONLY);
+	*prev = ft_strdup("");
 	(*inf).start = NULL;
 	(*inf).end = NULL;
 	(*inf).link = NULL;
 	(*inf).nb_rooms = 0;
-	room = NULL;
+	return (NULL);
+}
+
+t_room	*ret_room(char **prev, char **str, t_room *room)
+{
+	free(*str);
+	free(*prev);
+	return (room);
+}
+
+void	put_str(char **str)
+{
+	*str != NULL ? free(*str) : (*str);
+	get_next_line(0, str);
+	ft_putendl(*str);
+}
+
+void	free_prev(char **prev, char **str)
+{
+	free(*prev);
+	*prev = *str;
+}
+
+t_room	*read_input(t_inf *inf)
+{
+	char	*str;
+	char	*prev;
+	t_room	*room;
+
+	str = NULL;
+	room = init_func(inf, &prev);
 	while (!str || str[0] == '#')
-	{
-		if (str)
-			free (str);
-		get_next_line(fd, &str);
-	}
+		put_str(&str);
 	(*inf).ants = ft_atoi(str);
-	if ((*inf).ants < 1)
-		return (0);
-	free(str);
-	while (get_next_line(fd, &str) > 0)
+	((*inf).ants < 1) ? exit(error_mess(NULL)) : free(str);
+	while (get_next_line(0, &str) > 0)
 	{
+		ft_putendl(str);
 		if (!get_start(inf, prev, str, room))
-		{
-			free(str);
-			free(prev);
-			return (room);
-		}
+			return (ret_room(&prev, &str, room));
 		if (str[0] != '#' && check_format(str, room))
-		{
-			(*inf).nb_rooms++;
-			get_xy(&room, str);
-		}
+			(*inf).nb_rooms += get_xy(&room, str);
 		else if (check_link(str, room))
 			get_link(inf, str);
 		else if (str[0] != '#')
-		{
-			free(prev);
-			free(str);
-			return (room);
-		}
-		free (prev);
-		prev = str;
+			return (ret_room(&prev, &str, room));
+		free_prev(&prev, &str);
 	}
 	free(str);
 	return (room);

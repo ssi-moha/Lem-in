@@ -6,7 +6,7 @@
 /*   By: ssi-moha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/27 11:35:56 by ssi-moha          #+#    #+#             */
-/*   Updated: 2018/02/28 18:01:29 by ssi-moha         ###   ########.fr       */
+/*   Updated: 2018/03/03 10:25:55 by ssi-moha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 t_link		*create_path(t_inf inf)
 {
-	t_link *tmp;
-	int i;
-	int j;
+	t_link	*tmp;
+	t_link	*tmp2;
+	int		i;
+	int		j;
 
 	tmp = NULL;
 	i = 1;
@@ -24,69 +25,94 @@ t_link		*create_path(t_inf inf)
 	while (i <= inf.ants)
 	{
 		new_link(inf.start, &tmp);
-		tmp->lem = i;
+		tmp2 = tmp;
+		while (tmp2->next)
+			tmp2 = tmp2->next;
+		tmp2->lem = i;
 		i++;
 	}
 	return (tmp);
 }
 
-int		check_ants(t_link *link, t_inf inf)
+t_room		*list_split(char *path)
 {
-	t_link *tmp;
+	t_room	*room;
+	t_room	*tmp;
+	char	*stk;
+	int		i;
 
-	tmp = link;
-	while (tmp)
+	i = 0;
+	room = NULL;
+	while (path[i])
 	{
-		if (tmp->lem == inf.ants && !ft_strcmp(tmp->room, inf.end))
-			return (1);
-		tmp = tmp->next;
+		stk = ft_strcdup(path + i, ' ');
+		new_room(stk, &room);
+		free(stk);
+		tmp = room;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->visit = 0;
+		while (!is_space(path[i]) && path[i])
+			i++;
+		if (path[i])
+			i++;
 	}
+	return (room);
+}
+
+int			check_ants(t_room *room, t_inf inf)
+{
+	t_room *tmp;
+
+	tmp = room;
+	while (tmp->next)
+		tmp = tmp->next;
+	if (tmp->visit == inf.ants)
+		return (1);
 	return (0);
 }
 
-void	take_path(t_inf inf, t_room *room)
+void		aff_move(t_room *tmp, t_link *tmp2)
 {
-	char **tab;
-	t_link *path;
-	t_link *tmp;
-	int i;
-	int j;
-	int count;
+	char *stk;
 
-	i = 1;
-	j = 1;
-	tab = ft_strsplit(inf.path, ' ');
-	path = create_path(inf);
+	tmp->visit--;
+	tmp->next->visit++;
+	stk = tmp2->room;
+	tmp2->room = ft_strdup(tmp->next->name);
+	free(stk);
+	ft_putchar('L');
+	ft_putnbr(tmp2->lem);
+	ft_putchar('-');
+	ft_putstr(tmp2->room);
+	ft_putchar(' ');
+}
+
+void		take_path(t_inf inf)
+{
+	t_room *path;
+	t_link *ants;
+	t_room *tmp;
+	t_link *tmp2;
+
+	path = list_split(inf.path);
+	ants = create_path(inf);
 	tmp = path;
-	printf("test\n");
-	while (tmp)
-	{
-		printf("%d\n", tmp->lem);
-		tmp = tmp->next;
-	}
-	/*	while (tmp)
-	{
-		printf("L%d-%s", tmp->lem, tmp->room);
-		tmp = tmp->next;
-	}
-	tmp = path;
+	tmp2 = ants;
 	while (!check_ants(path, inf))
 	{
-		j = count;
-		tmp = path;
-		while (tmp && tmp->lem <= i)
+		tmp2 = ants;
+		while (tmp2)
 		{
-			while (!ft_strcmp(tmp->room, inf.end))
+			tmp = path;
+			while (ft_strcmp(tmp->name, tmp2->room))
 				tmp = tmp->next;
-			if (!tmp)
-				break ;
-			tmp->room = tab[j];
-			printf("L%d-%s", tmp->lem, tmp->room);
-			j--;
+			if (tmp->next && (!tmp->next->visit
+						|| !ft_strcmp(tmp->next->name, inf.end)))
+				aff_move(tmp, tmp2);
+			tmp2 = tmp2->next;
 		}
-		if (tab[count + 1])
-			count++;
 		ft_putchar('\n');
-		i++;
-	}*/
+	}
+	free_both(&path, &ants);
 }

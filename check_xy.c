@@ -6,7 +6,7 @@
 /*   By: ssi-moha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 14:51:17 by ssi-moha          #+#    #+#             */
-/*   Updated: 2018/02/19 19:28:50 by ssi-moha         ###   ########.fr       */
+/*   Updated: 2018/03/02 17:06:01 by ssi-moha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int		check_xy(t_room *room, char *str)
 {
-	t_room *tmp;
-	char *stk;
-	int x;
-	int y;
+	t_room	*tmp;
+	char	*stk;
+	int		x;
+	int		y;
 
 	if (!room)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: ssi-moha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/20 13:01:52 by ssi-moha          #+#    #+#             */
-/*   Updated: 2018/02/23 19:36:36 by ssi-moha         ###   ########.fr       */
+/*   Updated: 2018/03/03 10:26:29 by ssi-moha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ void	to_zero(t_room *room)
 {
 	t_room *tmp;
 
-	if (room)
-		tmp = room;
+	if (!room)
+		return ;
+	tmp = room;
 	while (tmp)
 	{
 		tmp->visit = 0;

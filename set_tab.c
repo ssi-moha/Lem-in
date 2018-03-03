@@ -6,7 +6,7 @@
 /*   By: ssi-moha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 20:59:20 by ssi-moha          #+#    #+#             */
-/*   Updated: 2018/02/26 18:41:03 by ssi-moha         ###   ########.fr       */
+/*   Updated: 2018/03/02 17:17:48 by ssi-moha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ int		**allocate_tab(int nb)
 
 int		**write_one(int **tab, t_room *room, char *name)
 {
-	t_room *tmp1;
-	t_room *tmp2;
-	int i;
-	int j;
+	t_room	*tmp1;
+	t_room	*tmp2;
+	int		i;
+	int		j;
 
 	tmp1 = room;
 	tmp2 = room;
@@ -74,11 +74,7 @@ int		**set_tab(t_inf inf, t_room *room)
 	t_link	*tmp;
 	t_room	*tmp2;
 	int		**tab;
-	int i;
-	int j;
 
-	i = 0;
-	j = 0;
 	tmp2 = room;
 	tmp = inf.link;
 	tab = allocate_tab(inf.nb_rooms);

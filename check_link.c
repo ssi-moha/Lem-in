@@ -1,5 +1,14 @@
-
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_link.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ssi-moha <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/02 17:19:03 by ssi-moha          #+#    #+#             */
+/*   Updated: 2018/03/02 17:19:08 by ssi-moha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "lem_in.h"
 
@@ -10,12 +19,12 @@ int		free_stk(char **stk)
 	return (0);
 }
 
-int	check_link(char *str, t_room *room)
+int		check_link(char *str, t_room *room)
 {
-	int i;
-	t_room *check;
-	char *tmp;
-	char *stk;
+	int		i;
+	t_room	*check;
+	char	*tmp;
+	char	*stk;
 
 	if (!room)
 		return (0);
@@ -28,20 +37,8 @@ int	check_link(char *str, t_room *room)
 		i++;
 	}
 	stk = ft_strcdup(str, '-');
-	//	printf("stk %s\n, check %s\n", stk, check->name);
-	//	while (ft_strcmp(stk, check->name) && check)
-	//	{
-	//		printf("test\n");
-	//		check = check->next;
-	//	}
-	//	if (!check)
-	//		return (0);
 	check = room;
 	tmp = ft_strchr(str, '-');
-	//	while (ft_strcmp(tmp, check->name) && check)
-	//		check = check->next;
-	//	if (!check)
-	//		return (0);
 	if (!tmp || tmp[0] != '-')
 		return (free_stk(&stk));
 	if (!ft_strcmp(tmp + 1, stk))

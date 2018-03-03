@@ -6,13 +6,29 @@
 /*   By: ssi-moha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 14:49:46 by ssi-moha          #+#    #+#             */
-/*   Updated: 2018/02/16 14:58:12 by ssi-moha         ###   ########.fr       */
+/*   Updated: 2018/03/02 10:48:12 by ssi-moha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int check_double(t_room **room, char *str)
+int		pars_big(char *s1, char *s2)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (!is_space(s1[i]) && s1[i])
+		i++;
+	while (!is_space(s2[j]) && s2[j])
+		j++;
+	if (j > i)
+		return (j);
+	return (i);
+}
+
+int		check_double(t_room **room, char *str)
 {
 	t_room *tmp;
 
@@ -21,7 +37,7 @@ int check_double(t_room **room, char *str)
 	tmp = *room;
 	while (tmp)
 	{
-		if (!ft_strncmp(tmp->name, str, ft_strclen(str, ' ')))
+		if (!ft_strncmp(tmp->name, str, pars_big(tmp->name, str)))
 			return (0);
 		tmp = tmp->next;
 	}
