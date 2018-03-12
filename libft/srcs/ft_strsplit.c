@@ -6,7 +6,7 @@
 /*   By: ssi-moha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 14:58:02 by ssi-moha          #+#    #+#             */
-/*   Updated: 2018/01/28 15:48:56 by ssi-moha         ###   ########.fr       */
+/*   Updated: 2018/03/03 11:01:25 by ssi-moha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int		ft_cletter(const char *s, char c)
 	return (j);
 }
 
-static char		*ft_strndup(const char *s, int c, int i)
+static char		*ft_stradup(const char *s, int c, int i)
 {
 	char	*dest;
 	int		j;
@@ -80,7 +80,7 @@ char			**ft_strsplit(char const *s, char c)
 	{
 		if (s[j] != c)
 		{
-			tab[i] = ft_strndup(s, c, j);
+			tab[i] = ft_stradup(s, c, j);
 			i++;
 			while (s[j] != c && s[j])
 				j++;

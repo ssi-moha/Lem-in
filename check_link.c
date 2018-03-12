@@ -6,7 +6,7 @@
 /*   By: ssi-moha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 17:19:03 by ssi-moha          #+#    #+#             */
-/*   Updated: 2018/03/02 17:19:08 by ssi-moha         ###   ########.fr       */
+/*   Updated: 2018/03/09 10:16:42 by ssi-moha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,20 @@ int		free_stk(char **stk)
 {
 	if (*stk)
 		free(*stk);
+	return (0);
+}
+
+int		is_room(t_room *room, char *stk)
+{
+	t_room *tmp;
+
+	tmp = room;
+	while (tmp)
+	{
+		if (!ft_strcmp(stk, tmp->name))
+			return (1);
+		tmp = tmp->next;
+	}
 	return (0);
 }
 
@@ -37,6 +51,8 @@ int		check_link(char *str, t_room *room)
 		i++;
 	}
 	stk = ft_strcdup(str, '-');
+	if (!is_room(room, stk))
+		return (free_stk(&stk));
 	check = room;
 	tmp = ft_strchr(str, '-');
 	if (!tmp || tmp[0] != '-')

@@ -6,7 +6,7 @@
 /*   By: ssi-moha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 13:02:01 by ssi-moha          #+#    #+#             */
-/*   Updated: 2018/03/03 10:39:41 by ssi-moha         ###   ########.fr       */
+/*   Updated: 2018/03/10 13:07:17 by ssi-moha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_room	*read_input(t_inf *inf)
 	while (!str || str[0] == '#')
 		put_str(&str);
 	(*inf).ants = ft_atoi(str);
-	((*inf).ants < 1) ? exit(error_mess(NULL)) : free(str);
+	((*inf).ants < 1) ? exit(error_mess(NULL)) : ft_strdel(&str);
 	while (get_next_line(0, &str) > 0)
 	{
 		ft_putendl(str);
@@ -67,6 +67,6 @@ t_room	*read_input(t_inf *inf)
 			return (ret_room(&prev, &str, room));
 		free_prev(&prev, &str);
 	}
-	free(str);
+	ft_strdel(&str);
 	return (room);
 }

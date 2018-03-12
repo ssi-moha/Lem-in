@@ -6,7 +6,7 @@
 /*   By: ssi-moha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 11:43:53 by ssi-moha          #+#    #+#             */
-/*   Updated: 2018/03/03 10:38:41 by ssi-moha         ###   ########.fr       */
+/*   Updated: 2018/03/10 13:11:05 by ssi-moha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ void	free_this(t_inf *inf)
 	(inf->path != NULL) ? free(inf->path) : (inf->path);
 }
 
-int		main(void)
+int		main(int argc, char **argv)
 {
 	t_inf	inf;
 	t_room	*room;
 	t_room	*tmp;
-	char	*path;
 
 	room = NULL;
 	inf.link = NULL;
-	path = NULL;
+	if (argc > 1 && argv)
+		exit(error_mess("use > to read the file\n"));
 	room = read_input(&inf);
 	!inf.start || !inf.end ? exit(error_mess(NULL)) : (tmp = room);
 	inf.tab = set_tab(inf, room);
