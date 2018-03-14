@@ -6,7 +6,7 @@
 /*   By: ssi-moha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 11:43:53 by ssi-moha          #+#    #+#             */
-/*   Updated: 2018/03/10 13:11:05 by ssi-moha         ###   ########.fr       */
+/*   Updated: 2018/03/14 10:47:56 by ssi-moha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,5 @@ int		main(int argc, char **argv)
 	take_path(inf);
 	free_this(&inf);
 	free_tab(inf.tab, inf.nb_rooms);
-	free_both(&tmp, &inf.link);
+	free_both(&room, &inf.link);
 }

@@ -6,7 +6,7 @@
 /*   By: ssi-moha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 21:40:42 by ssi-moha          #+#    #+#             */
-/*   Updated: 2018/03/02 18:24:54 by ssi-moha         ###   ########.fr       */
+/*   Updated: 2018/03/13 12:48:21 by ssi-moha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int		search_path(t_inf *inf, t_room *prev, t_room *next, t_room *begin_list)
 	j = -1;
 	while (++j < (*inf).nb_rooms)
 		if (inf->tab[next->pos][j] > 0 && (inf->tab[next->pos][j] == 1 || weight
-		< (*inf).tab[next->pos][j]) && (!prev || prev->pos != j) && j != 0)
+		< (*inf).tab[next->pos][j]) && (!prev || prev->pos != j) && j != ret_start(begin_list, inf))
 		{
 			while (tmp->pos != j)
 				tmp = tmp->next;

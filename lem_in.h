@@ -6,7 +6,7 @@
 /*   By: ssi-moha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 11:37:18 by ssi-moha          #+#    #+#             */
-/*   Updated: 2018/03/03 11:33:53 by ssi-moha         ###   ########.fr       */
+/*   Updated: 2018/03/14 09:38:03 by ssi-moha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_room				*new_elem(char *str, t_room *old);
 void				new_room(char *str, t_room **old);
 t_room				*read_input(t_inf *inf);
 void				free_rooms(t_room **room);
-int					get_start(t_inf *inf, char *prev, char *str, t_room *room);
+int					get_start(t_inf *inf, char *prev, char **str, t_room *room);
 int					is_space(char c);
 int					check_format(char *str, t_room *room);
 int					get_xy(t_room **room, char *str);
@@ -71,4 +71,5 @@ void				to_zero(t_room *room);
 void				take_path(t_inf inf);
 int					error_mess(char *str);
 void				free_both(t_room **room, t_link **link);
+int					ret_start(t_room *room, t_inf *inf);
 #endif

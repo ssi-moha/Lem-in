@@ -6,7 +6,7 @@
 /*   By: ssi-moha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 10:04:05 by ssi-moha          #+#    #+#             */
-/*   Updated: 2018/03/02 18:52:01 by ssi-moha         ###   ########.fr       */
+/*   Updated: 2018/03/14 10:07:05 by ssi-moha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int			get_xy(t_room **room, char *str)
 {
 	int			i;
 	t_room		*tmp;
-	static int	num;
+	static int num = 0;
 
 	i = 0;
 	new_room(str, room);
@@ -43,8 +43,9 @@ int			get_xy(t_room **room, char *str)
 	while (is_space(str[i]) && str[i])
 		i++;
 	tmp->y = ft_atoi(str + i);
-	tmp->pos = num;
+	tmp->pos = num++;
 	tmp->visit = 0;
-	num = num + 1;
+	if (!int_valid(tmp->x) || !int_valid(tmp->y))
+		exit(error_mess("X OR Y SIZE TOO BIG"));
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ssi-moha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 20:59:20 by ssi-moha          #+#    #+#             */
-/*   Updated: 2018/03/02 17:17:48 by ssi-moha         ###   ########.fr       */
+/*   Updated: 2018/03/14 09:59:03 by ssi-moha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,22 @@ int		**allocate_tab(int nb)
 	return (tab);
 }
 
+int		ret_x(t_room *tmp, char *name)
+{
+	char *str;
+	int x;
+
+	x = 0;
+	str = ft_strcdup(name, '-');
+	while (tmp && ft_strcmp(tmp->name, str) != 0)
+	{
+		x++;
+		tmp = tmp->next;
+	}
+	ft_strdel(&str);
+	return (x);
+}
+
 int		**write_one(int **tab, t_room *room, char *name)
 {
 	t_room	*tmp1;
@@ -51,11 +67,7 @@ int		**write_one(int **tab, t_room *room, char *name)
 	tmp2 = room;
 	i = 0;
 	j = 0;
-	while (tmp1 && ft_strncmp(tmp1->name, name, ft_strclen(name, '-')) != 0)
-	{
-		i++;
-		tmp1 = tmp1->next;
-	}
+	i = ret_x(tmp1, name);
 	while (tmp2 && ft_strcmp(tmp2->name, ft_strchr(name, '-') + 1))
 	{
 		j++;
