@@ -29,3 +29,4 @@ Le nom des salles n'importe pas. Les coordonnées des salles doivent êtres des 
 La commande "start" indique que la prochaine ligne est la salle de départ.
 La commande "end" indique que la prochaine ligne est la salle d'arrivée.
 Les lignes débutant par un seul caractère '#' sont des commentaires.
+il y a un saut de ligne entre chaque salles, commandes, commentaires ou liens.
